@@ -40,6 +40,6 @@
   id: AutomationFilterCombined
   graph: AutomationFilter
   startNode: start
-  targetNode: combined
+  targetNode: label
   category: construction-category-misc
   objectType: Item

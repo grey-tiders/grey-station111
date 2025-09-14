@@ -175,7 +175,6 @@
   cost: 10000
   recipeUnlocks:
   - ClothingHandsGlovesSurgical
-  - AutodocUpgradeKitBluespace # Goobstation
   technologyPrerequisites:
   - AdvancedCybernetics
   position: -2,9

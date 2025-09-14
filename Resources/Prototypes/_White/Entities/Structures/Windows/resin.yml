@@ -6,10 +6,10 @@
   components:
   - type: Sprite
     drawdepth: WallTops
-    sprite: _RMC14/Structures/Xenos/xeno_resin_wall.rsi # Goobstation new sprites
+    sprite: _White/Structures/Windows/resin_membrane.rsi
   - type: Icon
-    sprite: _RMC14/Structures/Xenos/xeno_resin_wall.rsi # Goobstation new sprites
-    state: membrane
+    sprite: _White/Structures/Windows/resin_membrane.rsi
+    state: full
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Resin
@@ -43,6 +43,6 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: IconSmooth
-    key: walls
-    base: membrane
+    key: resin_membrane
+    base: resin_membrane
   - type: Appearance

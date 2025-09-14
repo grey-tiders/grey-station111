@@ -7,17 +7,24 @@
   - type: Sprite
     noRot: true
     drawdepth: FloorTiles
-    sprite: _RMC14/Structures/Xenos/xeno_weeds.rsi # Goobstation new sprites
+    sprite: _White/Structures/Furniture/resin_weed.rsi
     layers:
-    - state: weed0
+    - state: full
+    - map: [ "enum.EdgeLayer.South" ]
+      state: south
+    - map: [ "enum.EdgeLayer.East" ]
+      state: east
+    - map: [ "enum.EdgeLayer.North" ]
+      state: north
+    - map: [ "enum.EdgeLayer.West" ]
+      state: west
   - type: Icon
-    sprite: _RMC14/Structures/Xenos/xeno_weeds.rsi # Goobstation new sprites
-    state: weed0
-  - type: IconSmooth # Goobstation new sprites
-    key: cm_xeno_weeds
-    base: weed_dir
-    mode: CardinalFlags
-#  - type: SmoothEdge # goobstation new sprites
+    sprite: _White/Structures/Furniture/resin_weed.rsi
+    state: full
+  - type: IconSmooth
+    key: full
+    mode: NoSprite
+  - type: SmoothEdge
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Resin
@@ -80,14 +87,9 @@
   description: Blue bioluminescence shines from beneath the surface.
   components:
   - type: Sprite
-    sprite: _RMC14/Structures/Xenos/xeno_weeds.rsi # Goobstation new sprites
-    drawdepth: FloorTiles
-    layers:
-    - state: weed0
-    - state: constructionnode
+    sprite: _White/Structures/Furniture/resin_weed_node.rsi
   - type: Icon
-    sprite: _RMC14/Structures/Xenos/xeno_weeds.rsi # Goobstation new sprites
-    state: weed0
+    sprite: _White/Structures/Furniture/resin_weed_node.rsi
   - type: AreaSpawner
     spawnPrototype: ResinWeed
   - type: PointLight

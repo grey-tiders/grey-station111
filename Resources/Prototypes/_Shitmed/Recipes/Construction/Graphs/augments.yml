@@ -95,28 +95,28 @@
     edges:
     - to: "botany tools panel"
       steps:
-      - tag: AugmentBotanyToolElectronics
+      - tag: AugmentBotanyToolBelt
         name: construction-graph-tag-botany-tools-electronics
         icon:
           sprite: Objects/Misc/module.rsi
           state: mainboard
     - to: "paperwork tools panel"
       steps:
-      - tag: AugmentPaperworkToolElectronics
+      - tag: AugmentPaperworkToolBelt
         name: construction-graph-tag-paperwork-tools-electronics
         icon:
           sprite: Objects/Misc/module.rsi
           state: mainboard
     - to: "utility tools panel"
       steps:
-      - tag: AugmentUtilityToolElectronics
+      - tag: AugmentToolBelt
         name: construction-graph-tag-utility-tools-electronics
         icon:
           sprite: Objects/Misc/module.rsi
           state: mainboard
     - to: "surgery tools panel"
       steps:
-      - tag: AugmentSurgeryToolElectronics
+      - tag: AugmentSurgeryToolBelt
         name: construction-graph-tag-surgery-tools-electronics
         icon:
           sprite: Objects/Misc/module.rsi
