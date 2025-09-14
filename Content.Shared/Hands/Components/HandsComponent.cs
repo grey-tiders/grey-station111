@@ -43,6 +43,8 @@
 using Content.Shared.DisplacementMap;
 using Content.Shared.Hands.EntitySystems;
 using Robust.Shared.Containers;
+using Content.Shared.Throwing;
+using Content.Shared.Whitelist;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
 
@@ -84,8 +86,9 @@ public sealed partial class HandsComponent : Component
     ///     Modifies the speed at which items are thrown.
     /// </summary>
     [DataField]
-    [ViewVariables(VVAccess.ReadWrite)]
-    public float BaseThrowspeed { get; set; } = 11f;
+    // ES START
+    public float BaseThrowspeed = ThrowingSystem.ESThrowSpeedDefault;
+    // ES END
 
     /// <summary>
     ///     Distance after which longer throw targets stop increasing throw impulse.
