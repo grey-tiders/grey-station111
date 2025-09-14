@@ -1013,7 +1013,7 @@ public abstract partial class SharedSurgerySystem
         if (check.Invalid != StepInvalidReason.None)
         {
             if (doPopup && check.Popup != null)
-                _popup.PopupEntity(check.Popup, user, user, PopupType.SmallCaution);
+                _popup.PopupClient(check.Popup, user, user, PopupType.SmallCaution);
 
             reason = check.Invalid;
             return false;
