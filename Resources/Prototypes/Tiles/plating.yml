@@ -29,6 +29,9 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
+# ES START
+# modified to remove different friction values, since we change friction to be higher overall.
+
 - type: tile
   id: Plating
   name: tiles-plating
@@ -40,7 +43,6 @@
   deconstructTimeMultiplier: 5 # Goobstation
   footstepSounds:
     collection: FootstepPlating
-  friction: 1.5
   heatCapacity: 10000
 
 - type: tile
@@ -73,7 +75,6 @@
   deconstructTimeMultiplier: 5 # Goobstation
   footstepSounds:
     collection: FootstepPlating
-  friction: 1.5
   heatCapacity: 10000
 
 - type: tile
@@ -87,7 +88,6 @@
   deconstructTimeMultiplier: 5 # Goobstation
   footstepSounds:
     collection: FootstepPlating
-  friction: 1.5
   heatCapacity: 10000
 
 - type: tile
@@ -101,7 +101,6 @@
   deconstructTimeMultiplier: 5 # Goobstation
   footstepSounds:
     collection: FootstepPlating
-  friction: 1.5
   heatCapacity: 10000
 
 - type: tile
@@ -115,7 +114,6 @@
   deconstructTimeMultiplier: 5 # Goobstation
   footstepSounds:
     collection: FootstepPlating
-  friction: 0.75 #a little less then actual snow
   heatCapacity: 10000
 
 - type: tile
@@ -129,7 +127,6 @@
   weather: true
   footstepSounds:
     collection: FootstepCatwalk
-  friction: 1.5
   isSpace: true
   itemDrop: PartRodMetal1
   heatCapacity: 10000
@@ -146,7 +143,6 @@
   weather: true
   footstepSounds:
     collection: FootstepPlating
-  friction: 1.5
   isSpace: true
   itemDrop: PartRodMetal1
   heatCapacity: 10000
