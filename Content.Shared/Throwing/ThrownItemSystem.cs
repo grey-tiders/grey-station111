@@ -83,6 +83,9 @@ namespace Content.Shared.Throwing
         [Dependency] private readonly SharedBroadphaseSystem _broadphase = default!;
         [Dependency] private readonly SharedPhysicsSystem _physics = default!;
         [Dependency] private readonly SharedGravitySystem _gravity = default!;
+        // ES START
+        [Dependency] private readonly SharedTransformSystem _transform = default!;
+        // ES END
 
         private const string ThrowingFixture = "throw-fixture";
 
@@ -105,7 +108,7 @@ namespace Content.Shared.Throwing
 
         private void ThrowItem(EntityUid uid, ThrownItemComponent component, ref ThrownEvent @event)
         {
-            if (!EntityManager.TryGetComponent(uid, out FixturesComponent? fixturesComponent) ||
+            if (!TryComp(uid, out FixturesComponent? fixturesComponent) ||
                 fixturesComponent.Fixtures.Count != 1 ||
                 !TryComp<PhysicsComponent>(uid, out var body))
             {
@@ -144,7 +147,7 @@ namespace Content.Shared.Throwing
         private void HandlePullStarted(PullStartedMessage message)
         {
             // TODO: this isn't directed so things have to be done the bad way
-            if (EntityManager.TryGetComponent(message.PulledUid, out ThrownItemComponent? thrownItemComponent))
+            if (TryComp(message.PulledUid, out ThrownItemComponent? thrownItemComponent))
                 StopThrow(message.PulledUid, thrownItemComponent);
         }
 
@@ -161,7 +164,7 @@ namespace Content.Shared.Throwing
                     _broadphase.RegenerateContacts((uid, physics));
             }
 
-            if (EntityManager.TryGetComponent(uid, out FixturesComponent? manager))
+            if (TryComp(uid, out FixturesComponent? manager))
             {
                 var fixture = _fixtures.GetFixtureOrNull(uid, ThrowingFixture, manager: manager);
 
@@ -189,6 +192,11 @@ namespace Content.Shared.Throwing
             // Assume it's uninteresting if it has no thrower. For now anyway.
             if (thrownItem.Thrower is not null)
                 _adminLogger.Add(LogType.Landed, LogImpact.Low, $"{ToPrettyString(uid):entity} thrown by {ToPrettyString(thrownItem.Thrower.Value):thrower} landed.");
+
+            // ES START
+            _transform.SetLocalRotation(uid, Angle.Zero);
+            _physics.SetAngularVelocity(uid, 0f, body: physics);
+            // ES END
 
             _broadphase.RegenerateContacts((uid, physics));
             var landEvent = new LandEvent(thrownItem.Thrower, playSound);
