@@ -10,6 +10,7 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using Content.Goobstation.Common.CCVar;
 using Content.Server.Atmos.Rotting;
 using Content.Server.Body.Systems;
 using Content.Server.Chat.Systems;
@@ -26,8 +27,11 @@ using Content.Shared._Shitmed.Medical.Surgery.Conditions;
 using Content.Shared._Shitmed.Medical.Surgery.Effects.Step;
 using Content.Shared._Shitmed.Medical.Surgery.Tools;
 using Robust.Server.GameObjects;
+using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Shared.Verbs;
+using Content.Shared._Shitmed.CCVar;
 using Content.Shared.Weapons.Melee.Events;
 using System.Linq;
 
@@ -37,6 +41,7 @@ public sealed class SurgerySystem : SharedSurgerySystem
 {
     [Dependency] private readonly BodySystem _body = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
+    [Dependency] private readonly IConfigurationManager _config = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
@@ -46,6 +51,7 @@ public sealed class SurgerySystem : SharedSurgerySystem
     {
         base.Initialize();
 
+        SubscribeLocalEvent<SurgeryToolComponent, GetVerbsEvent<UtilityVerb>>(OnUtilityVerb);
         SubscribeLocalEvent<SurgeryTargetComponent, SurgeryStepDamageEvent>(OnSurgeryStepDamage);
         // You might be wondering "why aren't we using StepEvent for these two?" reason being that StepEvent fires off regardless of success on the previous functions
         // so this would heal entities even if you had a used or incorrect organ.
@@ -107,6 +113,43 @@ public sealed class SurgerySystem : SharedSurgerySystem
             origin: user,
             partMultiplier: partMultiplier,
             targetPart: affectAll ? TargetBodyPart.All : _body.GetTargetBodyPart(partComp));
+    }
+
+    private void AttemptStartSurgery(Entity<SurgeryToolComponent> ent, EntityUid user, EntityUid target)
+    {
+        if (!IsLyingDown(target, user))
+            return;
+
+        if (user == target && !_config.GetCVar(SurgeryCVars.CanOperateOnSelf))
+        {
+            _popup.PopupEntity(Loc.GetString("surgery-error-self-surgery"), user, user);
+            return;
+        }
+
+        _ui.OpenUi(target, SurgeryUIKey.Key, user);
+        RefreshUI(target);
+    }
+
+    private void OnUtilityVerb(Entity<SurgeryToolComponent> ent, ref GetVerbsEvent<UtilityVerb> args)
+    {
+        if (!args.CanInteract
+            || !args.CanAccess
+            || !HasComp<SurgeryTargetComponent>(args.Target))
+            return;
+
+        var user = args.User;
+        var target = args.Target;
+
+        var verb = new UtilityVerb()
+        {
+            Act = () => AttemptStartSurgery(ent, user, target),
+            Icon = new SpriteSpecifier.Rsi(new("/Textures/Objects/Specific/Medical/Surgery/scalpel.rsi/"), "scalpel"),
+            Text = Loc.GetString("surgery-verb-text"),
+            Message = Loc.GetString("surgery-verb-message"),
+            DoContactInteraction = true
+        };
+
+        args.Verbs.Add(verb);
     }
 
     private void OnSurgeryStepDamage(Entity<SurgeryTargetComponent> ent, ref SurgeryStepDamageEvent args) =>
