@@ -125,6 +125,13 @@
   source: "https://idlethumbs.bandcamp.com/track/space-asshole"
   # The source is a direct link to the track, but not the "main" bandcamp of the author. Hence the link is also included separately in the copyright.
 
+- files: ["the_wizard.ogg"]
+  license: "Custom"
+  copyright: "The Wizard by Chris Remo is used with special permission from the author, under the condition that the project remains non-commercial and open source. The author also requested that a link to his bandcamp be included: https://chrisremo.bandcamp.com/"
+  source: "https://idlethumbs.bandcamp.com/track/the-wizard"
+  # The source is a direct link the the track, but not the "main" bandcamp of the author. Hence the link is also included separately in the copyright.
+  # Got permission from Chris for this song as well on 02/25/25, requires same attributions
+
 - files: ["absconditus.ogg"]
   license: "CC-BY-NC-SA-3.0"
   copyright: "Absconditus by ZhayTee. Converted from MP3 to OGG."
@@ -210,11 +217,6 @@
   copyright: "Dawson's Christian by Vic Tyler"
   source: "https://archive.org/details/filk_carmen_mirandas_ghost"
 
-- files: ["thewizard.ogg"]
-  license: "Custom"
-  copyright: "The Wizard by Chris Remo is used with special permission from the author, under the condition that the project remains non-commercial and open source. The author also requested that a link to his bandcamp be included: https://chrisremo.bandcamp.com/"
-  source: "https://idlethumbs.bandcamp.com/track/the-wizard"
-
 - files: ["skubstub.ogg"]
   license: "CC-BY-NC-SA-3.0"
   copyright: "DJ B1G YAPPA"
@@ -249,3 +251,28 @@
   license: "CC-BY-NC-SA-3.0"
   copyright: "The Future Soon by Jonathan Coulton"
   source: "https://www.youtube.com/watch?v=l5PEz3kGbp4"
+
+- files: ["tintin2.ogg"]
+  license: "CC-BY-NC-SA-3.0"
+  copyright: "Tintin on the Moon by Fred Gray/Tomas Danko."
+  source: "https://www.youtube.com/watch?v=J6J7BAno_s4"
+
+- files: ["deja_vu.ogg"]
+  license: "CC-BY-NC-SA-3.0"
+  copyright: "Deja Vu by Mort Garson."
+  source: "https://www.youtube.com/watch?v=AumYP6Np1eI"
+
+- files: ["myunmyun.ogg"]
+  license: "Custom"
+  copyright: "Myun Myun by Chakra (チャクラ)."
+  source: "https://www.youtube.com/watch?v=rrNcsouDBMA"
+
+- files: ["shibamata.ogg"]
+  license: "Custom"
+  copyright: "Shibamata midi by 虹."
+  source: "https://www.nicovideo.jp/watch/sm32841166"
+
+- files: ["squids.ogg"]
+  license: "Custom"
+  copyright: "Squids by Sewerslvt."
+  source: "https://www.youtube.com/watch?v=SCbtxbEzjD8"

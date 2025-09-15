@@ -94,21 +94,6 @@ public sealed partial class WizardMirrorWindow : DefaultWindow
 
         #endregion Sex
 
-        #region Gender
-
-        PronounsButton.AddItem(Loc.GetString("humanoid-profile-editor-pronouns-male-text"), (int) Gender.Male);
-        PronounsButton.AddItem(Loc.GetString("humanoid-profile-editor-pronouns-female-text"), (int) Gender.Female);
-        PronounsButton.AddItem(Loc.GetString("humanoid-profile-editor-pronouns-epicene-text"), (int) Gender.Epicene);
-        PronounsButton.AddItem(Loc.GetString("humanoid-profile-editor-pronouns-neuter-text"), (int) Gender.Neuter);
-
-        PronounsButton.OnItemSelected += args =>
-        {
-            PronounsButton.SelectId(args.Id);
-            SetGender((Gender) args.Id);
-        };
-
-        #endregion Gender
-
         RefreshSpecies();
 
         SpeciesButton.OnItemSelected += args =>
@@ -389,7 +374,6 @@ public sealed partial class WizardMirrorWindow : DefaultWindow
 
         UpdateNameEdit();
         UpdateSexControls();
-        UpdateGenderControls();
         UpdateSkinColor();
         UpdateEyePickers();
         UpdateSaveButton();
@@ -477,7 +461,6 @@ public sealed partial class WizardMirrorWindow : DefaultWindow
                 break;
         }
 
-        UpdateGenderControls();
         Markings.SetSex(newSex);
         ReloadPreview();
     }
@@ -587,16 +570,6 @@ public sealed partial class WizardMirrorWindow : DefaultWindow
             Profile.Appearance.SkinColor,
             Profile.Appearance.EyeColor
         );
-    }
-
-    private void UpdateGenderControls()
-    {
-        if (Profile == null)
-        {
-            return;
-        }
-
-        PronounsButton.SelectId((int) Profile.Gender);
     }
 
     private void UpdateHairPickers()
