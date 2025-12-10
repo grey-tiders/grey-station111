@@ -80,9 +80,9 @@
         layer:
         - MobLayer
   - type: ScaleData # Goobstation
-    # scale: 0.8, 0.8 # Goobstation: port EE height/width sliders
+    scale: 0.8, 0.8
   - type: Sprite
-    # scale: 0.8, 0.8 # Goobstation: port EE height/width sliders
+    scale: 0.8, 0.8
     layers:
       - map: [ "enum.HumanoidVisualLayers.Chest" ]
       - map: [ "enum.HumanoidVisualLayers.Groin" ]
